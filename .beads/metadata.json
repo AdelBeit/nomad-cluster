@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "nomad_cluster",
+  "project_id": "791ce660-cc91-4253-a76d-c70ac8c7d5ed"
+}
