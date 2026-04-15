@@ -6,3 +6,6 @@
 
 # Vagrant
 .vagrant/
+
+# Screenshots and images
+*.png
