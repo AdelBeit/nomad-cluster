@@ -1,21 +1,4 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(git *)",
-      "Bash(bd *)",
-      "Bash(npm *)",
-      "Bash(terraform *)",
-      "Bash",
-      "Edit",
-      "Read",
-      "Write",
-      "Glob",
-      "Grep",
-      "Agent",
-      "Skill"
-    ],
-    "defaultMode": "dontAsk"
-  },
   "hooks": {
     "PreCompact": [
       {
@@ -39,5 +22,22 @@
         "matcher": ""
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(bd *)",
+      "Bash(npm *)",
+      "Bash(terraform *)",
+      "Bash",
+      "Edit",
+      "Read",
+      "Write",
+      "Glob",
+      "Grep",
+      "Agent",
+      "Skill"
+    ],
+    "defaultMode": "dontAsk"
   }
 }
