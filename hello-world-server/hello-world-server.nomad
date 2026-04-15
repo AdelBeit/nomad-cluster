@@ -1,4 +1,4 @@
-job "hello-world" {
+job "hello-world-server" {
   datacenters = ["dc1"]
   type        = "service"
 
