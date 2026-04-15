@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greeter</title>
+</head>
+<body>
+  <h1>Greeter</h1>
+  <input id="nameInput" type="text" />
+  <button onclick="greet()">Submit</button>
+  <p id="result"></p>
+
+  <script>
+    const names = ["Alice", "Bruno", "Camille", "Diego", "Eva"];
+    document.getElementById('nameInput').value = names[Math.floor(Math.random() * names.length)];
+
+    async function greet() {
+      const name = document.getElementById('nameInput').value;
+      try {
+        const res = await fetch('http://192.168.33.10:3000/greet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        const text = await res.text();
+        document.getElementById('result').textContent = text;
+      } catch (err) {
+        document.getElementById('result').textContent = 'Error: ' + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
