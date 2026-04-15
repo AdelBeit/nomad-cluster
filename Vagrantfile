@@ -82,6 +82,7 @@ Vagrant.configure("2") do |config|
     usermod -aG docker vagrant
     systemctl enable nomad
     systemctl start nomad
+    cp /vagrant/consul.hcl /etc/consul.d/consul.hcl
     systemctl enable consul
     systemctl start consul || sleep 5
   SHELL
