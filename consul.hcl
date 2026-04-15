@@ -51,7 +51,7 @@ server = true
 bind_addr = "192.168.33.10"
 #
 # Advertise addr - if you want to point clients to a different address than bind or LB.
-#advertise_addr = "127.0.0.1"
+advertise_addr = "192.168.33.10"
 
 # Enterprise License
 # As of 1.10, Enterprise requires a license_path and does not have a short trial.
