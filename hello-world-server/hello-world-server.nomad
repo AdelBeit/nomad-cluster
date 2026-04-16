@@ -25,6 +25,19 @@ job "hello-world-server" {
         cpu    = 100
         memory = 256
       }
+
+      service {
+        name     = "hello-world-server"
+        port     = "http"
+        provider = "consul"
+
+        check {
+          type     = "http"
+          path     = "/"
+          interval = "10s"
+          timeout  = "2s"
+        }
+      }
     }
   }
 }
