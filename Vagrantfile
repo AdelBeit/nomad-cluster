@@ -85,5 +85,9 @@ Vagrant.configure("2") do |config|
     cp /vagrant/consul.hcl /etc/consul.d/consul.hcl
     systemctl enable consul
     systemctl start consul || sleep 5
+
+    # Build Docker images
+    docker build -t hello-world-server:v1.0.0 /vagrant/hello-world-server
+    docker build -t hello-world-client:v1.0.0 /vagrant/hello-world-client
   SHELL
 end
