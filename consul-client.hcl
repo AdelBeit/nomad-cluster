@@ -1,7 +1,9 @@
 data_dir = "/opt/consul"
 
 client_addr = "0.0.0.0"
-bind_addr   = "{{ GetPrivateInterfaces | include \"network\" \"192.168.33.0/24\" | attr \"address\" }}"
+bind_addr   = "0.0.0.0"
+
+advertise_addr = "{{ GetPrivateInterfaces | include \"network\" \"192.168.33.0/24\" | attr \"address\" }}"
 
 server = false
 
