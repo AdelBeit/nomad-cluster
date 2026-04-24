@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "=== Launching Consul Client ==="
-sudo cp /vagrant/consul-client.hcl /etc/consul.d/consul.hcl
+sudo cp /vagrant/consul-config/consul-client.hcl /etc/consul.d/consul.hcl
 sudo systemctl restart consul
 sleep 2
 
 echo "=== Launching Nomad Client ==="
-sudo cp /vagrant/nomad-client.hcl /etc/nomad.d/nomad.hcl
+sudo cp /vagrant/nomad-config/nomad-client.hcl /etc/nomad.d/nomad.hcl
 sudo systemctl restart nomad
 sleep 2
 
