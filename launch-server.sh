@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "=== Launching Consul Server ==="
-sudo cp /vagrant/consul.hcl /etc/consul.d/consul.hcl
+sudo cp /vagrant/consul-server.hcl /etc/consul.d/consul.hcl
 sudo systemctl restart consul
 sleep 2
 
