@@ -47,11 +47,10 @@ server = true
 
 # Bind addr
 # You may use IPv4 or IPv6 but if you have multiple interfaces you must be explicit.
-#bind_addr = "[::]" # Listen on all IPv6
-bind_addr = "192.168.33.10"
-#
+bind_addr = "0.0.0.0"
+
 # Advertise addr - if you want to point clients to a different address than bind or LB.
-advertise_addr = "192.168.33.10"
+advertise_addr = "{{ GetInterfaceIP `eth1` }}"
 
 # Enterprise License
 # As of 1.10, Enterprise requires a license_path and does not have a short trial.

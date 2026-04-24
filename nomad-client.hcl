@@ -1,10 +1,13 @@
 data_dir  = "/opt/nomad/data"
 bind_addr = "0.0.0.0"
 
+datacenter = "dc1"
+region     = "dc1"
+
 advertise {
-  http = "{{ GetPrivateInterfaces | include \"network\" \"192.168.33.0/24\" | attr \"address\" }}"
-  rpc  = "{{ GetPrivateInterfaces | include \"network\" \"192.168.33.0/24\" | attr \"address\" }}"
-  serf = "{{ GetPrivateInterfaces | include \"network\" \"192.168.33.0/24\" | attr \"address\" }}"
+  http = "{{ GetInterfaceIP `eth1` }}"
+  rpc  = "{{ GetInterfaceIP `eth1` }}"
+  serf = "{{ GetInterfaceIP `eth1` }}"
 }
 
 server {
@@ -13,5 +16,15 @@ server {
 
 client {
   enabled = true
-  servers = ["192.168.33.10:4647"]
+  servers = ["nomad-server:4647"]
+}
+
+consul {
+  address = "127.0.0.1:8500"
+}
+
+plugin "raw_exec" {
+  config {
+    enabled = true
+  }
 }
