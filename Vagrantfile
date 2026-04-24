@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/jammy64"
+  config.vm.box = "bento/ubuntu-20.04"
   config.vm.boot_timeout = 600
 
   # ── SERVER NODE ───────────────────────────────────────────────
@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
     s.vm.network "private_network", ip: "192.168.33.10"
 
     s.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
+      vb.memory = "1516"
       vb.cpus   = "2"
     end
 
@@ -23,31 +23,20 @@ Vagrant.configure("2") do |config|
     s.vm.network "forwarded_port", guest: 8500, host: 8500, auto_correct: true  # Consul UI
   end
 
-  # ── CLIENT NODE 1 (runs hello-world-client) ──────────────────
-  config.vm.define "nomad-client-1" do |c1|
-    c1.vm.hostname = "nomad-client-1"
-    c1.vm.network "private_network", ip: "192.168.33.11"
+  # ── CLIENT NODES ──────────────────────────────────────────────
+  (1..1).each do |i|
+    config.vm.define "nomad-client-#{i}" do |c|
+      c.vm.hostname = "nomad-client-#{i}"
+      c.vm.network "private_network", ip: "192.168.33.#{i+10}"
 
-    c1.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
-      vb.cpus   = "2"
+      c.vm.provider "virtualbox" do |vb|
+        vb.memory = "1516"
+        vb.cpus   = "2"
+      end
+
+      c.vm.provision "shell", path: "node-install.sh"
+      c.vm.provision "shell", path: "launch-client.sh", run: 'always'
     end
-
-    c1.vm.provision "shell", path: "node-install.sh"
-    c1.vm.provision "shell", path: "launch-client.sh", run: 'always'
   end
 
-  # ── CLIENT NODE 2 (runs hello-world-client) ──────────────────
-  config.vm.define "nomad-client-2" do |c2|
-    c2.vm.hostname = "nomad-client-2"
-    c2.vm.network "private_network", ip: "192.168.33.12"
-
-    c2.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
-      vb.cpus   = "2"
-    end
-
-    c2.vm.provision "shell", path: "node-install.sh"
-    c2.vm.provision "shell", path: "launch-client.sh", run: 'always'
-  end
 end
